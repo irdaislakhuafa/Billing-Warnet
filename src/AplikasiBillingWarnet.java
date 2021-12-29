@@ -27,7 +27,7 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         label1 = new java.awt.Label();
@@ -46,6 +46,8 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
         bayar = new javax.swing.JTextField();
         jenis_komputer = new javax.swing.JComboBox<>();
         penggunaan = new javax.swing.JComboBox<>();
+        estimateTime = new javax.swing.JLabel();
+        timerValue = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,11 +78,6 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
         jButton1.setText("TRANSAKSI");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    new BillingWarnetUtils().wait(3);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
                 jButton1ActionPerformed(evt);
             }
         });
@@ -115,8 +112,7 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
         bayar.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 
         jenis_komputer.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jenis_komputer.setModel(new javax.swing.DefaultComboBoxModel<>(
-                new String[] { "PILIH KOMPUTER", "KOMPUTER 1", "KOMPUTER 2", "KOMPUTER 3" }));
+        jenis_komputer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PILIH KOMPUTER", "KOMPUTER 1", "KOMPUTER 2", "KOMPUTER 3" }));
         jenis_komputer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jenis_komputerActionPerformed(evt);
@@ -124,119 +120,103 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
         });
 
         penggunaan.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        penggunaan.setModel(new javax.swing.DefaultComboBoxModel<>(
-                new String[] { "PILIH WAKTU", "1 jam", "2 jam", "3 jam", "4 jam", "5 jam" }));
+        penggunaan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PILIH WAKTU", "1 jam", "2 jam", "3 jam", "4 jam", "5 jam" }));
         penggunaan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 penggunaanActionPerformed(evt);
             }
         });
 
+        estimateTime.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        estimateTime.setText("Estimasi Waktu");
+
+        timerValue.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        timerValue.setText("00 JAM 00 MENIT 00 DETIK");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(84, 84, 84)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(97, 97, 97)
-                                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 135,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(89, 89, 89)
-                                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 135,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                                false)
-                                                        .addComponent(NOMOR_KOMPUTER,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(LAMA_PENGGUNAAN,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(BIAYA_PER_JAM,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(SNACK, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(TOTAL_HARGA, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(BAYAR, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                .addGap(90, 90, 90)
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(bayar)
-                                                        .addComponent(total_harga)
-                                                        .addComponent(snack)
-                                                        .addComponent(biaya)
-                                                        .addComponent(jenis_komputer, 0,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(penggunaan, 0,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                Short.MAX_VALUE))))
-                                .addGap(232, 232, 232))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 304,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(304, 304, 304)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(84, 84, 84)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(97, 97, 97)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(89, 89, 89)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(NOMOR_KOMPUTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(LAMA_PENGGUNAAN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BIAYA_PER_JAM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(SNACK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(TOTAL_HARGA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BAYAR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(90, 90, 90)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bayar)
+                            .addComponent(total_harga)
+                            .addComponent(snack)
+                            .addComponent(biaya)
+                            .addComponent(jenis_komputer, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(penggunaan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(estimateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(timerValue, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(304, 304, 304))
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 52,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jenis_komputer)
-                                        .addComponent(NOMOR_KOMPUTER, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(LAMA_PENGGUNAAN)
-                                        .addComponent(penggunaan))
-                                .addGap(4, 4, 4)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(BIAYA_PER_JAM)
-                                        .addComponent(biaya, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(SNACK)
-                                        .addComponent(snack, javax.swing.GroupLayout.PREFERRED_SIZE, 28,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(TOTAL_HARGA)
-                                        .addComponent(total_harga, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(BAYAR)
-                                        .addComponent(bayar, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 34,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(57, Short.MAX_VALUE)));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jenis_komputer)
+                        .addComponent(estimateTime))
+                    .addComponent(NOMOR_KOMPUTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LAMA_PENGGUNAAN)
+                    .addComponent(penggunaan))
+                .addGap(4, 4, 4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BIAYA_PER_JAM)
+                    .addComponent(biaya, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(timerValue))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(SNACK)
+                    .addComponent(snack, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(TOTAL_HARGA)
+                    .addComponent(total_harga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BAYAR)
+                    .addComponent(bayar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(64, Short.MAX_VALUE))
+        );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    // button transaksi
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
         int Bayar = Integer.parseInt(bayar.getText());
         int Biaya = Integer.parseInt(biaya.getText());
@@ -249,6 +229,11 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
         snack.setText(" ");
         total_harga.setText(" ");
         bayar.setText(" ");
+        
+        String selectedTime = penggunaan.getSelectedItem().toString();
+        System.out.println(selectedTime.charAt(0));
+        
+        setTimer(Integer.valueOf(selectedTime.trim().charAt(0)));
     }// GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
@@ -342,6 +327,7 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
     private javax.swing.JLabel TOTAL_HARGA;
     private javax.swing.JTextField bayar;
     private javax.swing.JTextField biaya;
+    private javax.swing.JLabel estimateTime;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -349,6 +335,7 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
     private java.awt.Label label1;
     private javax.swing.JComboBox<String> penggunaan;
     private javax.swing.JTextField snack;
+    private static javax.swing.JLabel timerValue;
     private javax.swing.JTextField total_harga;
     // End of variables declaration//GEN-END:variables
 
@@ -360,6 +347,19 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+    
+    private static void setTimer(int jam){
+        String textTimer;
+        jam = (jam * 60 * 60);
+        for (int i = jam; i >= 0; i--){
+            textTimer = String.valueOf( 
+                    (i / 60 / 60) + " JAM " + 
+                    (i / 60) + " MENIT " +
+                    (i % 60) + " DETIK"        
+            );
+            timerValue.setText(textTimer);
         }
     }
 }
