@@ -18,8 +18,10 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
      */
     private BillingWarnetUtils threadTimer;
     private Boolean isPaused = false;
+    private Boolean btnPauseDisable = true;
 
     public AplikasiBillingWarnet() {
+        this.setResizable(false);
         initComponents();
     }
 
@@ -52,6 +54,7 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
         estimateTime = new javax.swing.JLabel();
         timerValue = new javax.swing.JLabel();
         btnTimer = new javax.swing.JButton();
+        btnResetTimer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -138,12 +141,23 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
         timerValue.setText("00 JAM 00 MENIT 00 DETIK");
 
         btnTimer.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
-        btnTimer.setText("Start");
+        btnTimer.setText("Mulai");
+        btnTimer.setEnabled(false);
         btnTimer.setMaximumSize(new java.awt.Dimension(104, 33));
         btnTimer.setPreferredSize(new java.awt.Dimension(104, 33));
         btnTimer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTimerActionPerformed(evt);
+            }
+        });
+
+        btnResetTimer.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
+        btnResetTimer.setText("Reset");
+        btnResetTimer.setMaximumSize(new java.awt.Dimension(104, 33));
+        btnResetTimer.setPreferredSize(new java.awt.Dimension(104, 33));
+        btnResetTimer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetTimerActionPerformed(evt);
             }
         });
 
@@ -176,17 +190,15 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
                             .addComponent(biaya)
                             .addComponent(jenis_komputer, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(penggunaan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(71, 71, 71)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(estimateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(timerValue, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(estimateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(timerValue, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(151, 151, 151))))
+                        .addGap(42, 42, 42)
+                        .addComponent(btnResetTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(23, 23, 23))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -217,11 +229,11 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
                     .addComponent(SNACK)
                     .addComponent(snack, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(TOTAL_HARGA)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(total_harga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(total_harga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnResetTimer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TOTAL_HARGA))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BAYAR)
@@ -242,15 +254,31 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
     private void btnTimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimerActionPerformed
         // TODO add your handling code here:
         isPaused = !isPaused;
-
-        if (!isPaused) {
-            btnTimer.setText("Pause");
-            threadTimer.resume();
-        } else {
-            btnTimer.setText("Resume");
-            threadTimer.suspend();
-        }
+//        if (btnPauseDisable == false) {
+            if (!isPaused) {
+                btnTimer.setText("Tunda");
+                threadTimer.resume();
+            } else {
+                btnTimer.setText("Lanjutkan");
+                threadTimer.suspend();
+            }
+//        }
     }//GEN-LAST:event_btnTimerActionPerformed
+
+//    button reset
+    private void btnResetTimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetTimerActionPerformed
+        // TODO add your handling code here:
+        try {
+            threadTimer.reset();
+            btnTimer.setText("Mulai");
+            btnTimer.setEnabled(false);
+        } catch (Exception e) {
+            int option = JOptionPane.YES_OPTION;
+            JOptionPane.showConfirmDialog(null, "Silahkan isi data terlebih dahulu", "Peringatan!", option);
+//            JOptionPane.showConfirmDialog(null, "Silahkan isi data terlebih dahulu");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnResetTimerActionPerformed
 
     // button transaksi
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
@@ -261,10 +289,10 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Kembalian Anda : " + Kembali);
 
         jenis_komputer.setSelectedItem("pilih");
-        biaya.setText(" ");
-        snack.setText(" ");
-        total_harga.setText(" ");
-        bayar.setText(" ");
+        biaya.setText("");
+        snack.setText("");
+        total_harga.setText("");
+        bayar.setText("");
 
         String selectedTime = penggunaan.getSelectedItem().toString();
         System.out.println(selectedTime.charAt(0));
@@ -273,6 +301,8 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
                 timerValue, (int) Integer.valueOf(Character.toString(selectedTime.charAt(0)))
         );
         threadTimer.start();
+        btnPauseDisable = false;
+        btnTimer.setEnabled(true);
         btnTimer.setText("Pause");
     }// GEN-LAST:event_jButton1ActionPerformed
 
@@ -368,6 +398,7 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
     private javax.swing.JLabel TOTAL_HARGA;
     private javax.swing.JTextField bayar;
     private javax.swing.JTextField biaya;
+    private javax.swing.JButton btnResetTimer;
     private javax.swing.JButton btnTimer;
     private javax.swing.JLabel estimateTime;
     private javax.swing.JButton jButton1;

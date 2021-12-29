@@ -30,6 +30,11 @@ public class BillingWarnetUtils extends Thread {
             e.printStackTrace();
         }
     }
+    
+    public void reset(){
+        this.stop();
+        label.setText("00 JAM 00 MENIT 00 DETIK");
+    }
 
     private static void wait(int time) {
         try {
