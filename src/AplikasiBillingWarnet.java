@@ -76,7 +76,11 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
         jButton1.setText("TRANSAKSI");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                System.out.println("wkwkwk");
+                try {
+                    new BillingWarnetUtils().wait(3);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 jButton1ActionPerformed(evt);
             }
         });
@@ -349,4 +353,13 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     // class utility
+    public static class BillingWarnetUtils {
+        private void wait(int time) {
+            try {
+                Thread.sleep(Long.valueOf(time * 1000));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

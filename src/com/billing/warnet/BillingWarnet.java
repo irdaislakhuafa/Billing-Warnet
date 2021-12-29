@@ -14,8 +14,10 @@ public class BillingWarnet {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args) throws Exception {
+        System.out.println("oioi");
+        Thread.sleep(2000);
+        System.out.println("done");
     }
-    
+
 }
