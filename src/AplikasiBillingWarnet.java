@@ -17,6 +17,8 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
     /**
      * Creates new form AplikasiBillingWarnet
      */
+    private BillingWarnetUtils threadTimer;
+    
     public AplikasiBillingWarnet() {
         initComponents();
     }
@@ -163,11 +165,11 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
                             .addComponent(biaya)
                             .addComponent(jenis_komputer, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(penggunaan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(71, 71, 71)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(estimateTime, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(timerValue, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34))
+                .addGap(23, 23, 23))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -234,7 +236,7 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
         String selectedTime = penggunaan.getSelectedItem().toString();
         System.out.println(selectedTime.charAt(0));
         
-        BillingWarnetUtils threadTimer = new BillingWarnetUtils(
+        threadTimer = new BillingWarnetUtils(
                 timerValue, (int) Integer.valueOf(Character.toString(selectedTime.charAt(0)))
         );
         threadTimer.start();
