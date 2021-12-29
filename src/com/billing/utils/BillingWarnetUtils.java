@@ -1,4 +1,4 @@
-package billing.utils;
+package com.billing.utils;
 
 import javax.swing.JLabel;
 
