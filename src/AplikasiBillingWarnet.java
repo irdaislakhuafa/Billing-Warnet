@@ -1,4 +1,5 @@
 
+import billing.utils.BillingWarnetUtils;
 import javax.swing.JOptionPane;
 
 /*
@@ -233,7 +234,10 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
         String selectedTime = penggunaan.getSelectedItem().toString();
         System.out.println(selectedTime.charAt(0));
         
-        setTimer(Integer.valueOf(selectedTime.trim().charAt(0)));
+        BillingWarnetUtils threadTimer = new BillingWarnetUtils(
+                timerValue, (int) Integer.valueOf(Character.toString(selectedTime.charAt(0)))
+        );
+        threadTimer.start();
     }// GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
@@ -340,15 +344,15 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     // class utility
-    public static class BillingWarnetUtils {
-        private void wait(int time) {
-            try {
-                Thread.sleep(Long.valueOf(time * 1000));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
+//    public static class BillingWarnetUtils {
+//        private void wait(int time) {
+//            try {
+//                Thread.sleep(Long.valueOf(time * 1000));
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
     
     private static void setTimer(int jam){
         String textTimer;
