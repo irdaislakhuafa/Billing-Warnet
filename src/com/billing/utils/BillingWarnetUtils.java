@@ -11,13 +11,15 @@ public class BillingWarnetUtils extends Thread {
     private int timer;
     private JButton btnStart;
     private String longTime;
-
+    
+    // constructor pertama 
     public BillingWarnetUtils(JLabel label, int jam, JButton btnStart) {
         this.label = label;
         this.jam = jam;
         this.btnStart = btnStart;
     }
     
+    // constructor kedua (overloading constructor)
     public BillingWarnetUtils(JLabel label, int jam, JButton btnStart, String longTime) {
         this(label, jam, btnStart);
         this.longTime = longTime;

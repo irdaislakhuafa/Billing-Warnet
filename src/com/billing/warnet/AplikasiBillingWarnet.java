@@ -1,6 +1,5 @@
 package com.billing.warnet;
 
-
 import com.billing.utils.BillingWarnetUtils;
 import javax.swing.JOptionPane;
 
@@ -107,6 +106,7 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
         });
 
         biaya.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        biaya.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         snack.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         snack.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -251,30 +251,29 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-//    button pause
+//    button mulai, tunda, lanjutkan
     private void btnTimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimerActionPerformed
         // TODO add your handling code here:
-        isPaused = !isPaused;
-//        if (btnPauseDisable == false) {
-            if (!isPaused) {
-                btnTimer.setText("Tunda");
-                threadTimer.resume();
-            } else {
-                btnTimer.setText("Lanjutkan");
-                threadTimer.suspend();
-            }
-//        }
+        isPaused = !isPaused; // variable isPaused di set sesuai kebalikannya (jika isPaused true maka akan jadi false, jika isPaused false maka akan jadi true;
+
+        if (!isPaused) { // jika isPaused itu sama dengan kebalikannya
+            btnTimer.setText("Tunda"); // maka text pada btnTimer akan menjadi "Tunda"
+            threadTimer.resume(); // dan timer akan dilanjutkan
+        } else {
+            btnTimer.setText("Lanjutkan"); // jika isPaused itu tidak sama dengan kebalikannya maka text pada btnTimer akan menjadi "Lanjutkan"
+            threadTimer.suspend(); // dan timer akan ditunda
+        }
     }//GEN-LAST:event_btnTimerActionPerformed
 
 //    button reset
     private void btnResetTimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetTimerActionPerformed
         // TODO add your handling code here:
         try {
-            threadTimer.reset();
-            btnTimer.setText("Mulai");
-            isPaused = false;
-            btnTimer.setEnabled(false);
-        } catch (Exception e) {
+            threadTimer.reset(); // jika tombol reset ditekan makan akan memanggil fungsi reset() dari class BillingWarnetUtils untuk mereset timer ke 0
+            btnTimer.setText("Mulai"); // jika timer di reset maka text pada tombol btnTimer akan menjadi "mulai"
+            isPaused = false; // variable isPaused (dipakai di bagian btnTimerActionPerformed()) di set ke false (default)
+            btnTimer.setEnabled(false); // btnTimer akan di disable agar tidak bisa dimulai jika data belum dimasukan
+        } catch (Exception e) { // jika data belum dimasukan maka akan muncul notifikasi seperti dibawah
             int option = JOptionPane.YES_OPTION;
             JOptionPane.showConfirmDialog(null, "Silahkan isi data terlebih dahulu", "Peringatan!", option);
 //            JOptionPane.showConfirmDialog(null, "Silahkan isi data terlebih dahulu");
@@ -296,19 +295,30 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
         total_harga.setText("");
         bayar.setText("");
 
-        String selectedTime = penggunaan.getSelectedItem().toString();
-        System.out.println(selectedTime.charAt(0));
+        // kode saya dimulai dari sini
+        String selectedTime = penggunaan.getSelectedItem().toString(); // menangkap item yg dipilih di variable penggunaan (breapa jam)
+        System.out.println(selectedTime.charAt(0)); // menampilkan karakter pertama dari item penggunaan yang dipilih
 
-        threadTimer = new BillingWarnetUtils(
-                timerValue, 
-                (int) Integer.valueOf(Character.toString(selectedTime.charAt(0))), 
-                btnTimer, 
-                selectedTime
+        // liat diatas ada object class BillingWarnetUtils() bernama threadTimer 
+        threadTimer = new BillingWarnetUtils( // liat code di class BillingWarnetUtils di package com.billing.utils
+                // mengirim object timerValue dari JLabel ke class BillingWarnetUtils (JLabel ini untuk menampilkan jam menit detik di Estimasi Waktu)
+                timerValue,
+                // mengirim karakter pertama dari item yg dipilih dalam (penggunaan / jam), parameter ini untuk mengirimkan jumlah jam
+                (int) Integer.valueOf( // mengkonversinya (String) menjadi int/Integer/angka, karena default nya text/String
+                        selectedTime.substring(0, 1).trim() // mengambil karakter pertama dan kedua dari variable selectedTime, fungsi trim() digunakan untuk menghapus spasi dari String
+                ),
+                // mengirimkan object JButton bernama btnTimer (tombol mulai, tunda, lanjutkan) dari class saat ini
+                btnTimer,
+                // mengirimkan variable selectedTime ke class BillingWarnetUtils sebagai notifikasi waktu sewa yag telah breakhir berapa jam
+                selectedTime // misal "Waktu penyewaan 1 jam sudah habis 
         );
+
+        // memulai/start threadTimer (memulai timer), funsgi start() menjalankan fungsi run() di class BillingWarnetUtils
         threadTimer.start();
-//        btnPauseDisable = false;
-        btnTimer.setEnabled(true);
-        btnTimer.setText("Pause");
+        btnTimer.setEnabled(true); // menghidupkan tombol (mulai, tunda, lanjutkan)
+        btnTimer.setText("Pause"); // jika timer dimulai makan text pada tombol btnTimer akan menjadi "pause"
+        // sampai sini
+
     }// GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
@@ -389,7 +399,10 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AplikasiBillingWarnet().setVisible(true);
+                AplikasiBillingWarnet warnet = new AplikasiBillingWarnet();
+
+//                warnet.biaya.setEnabled(false);
+                warnet.setVisible(true);
             }
         });
     }
@@ -416,27 +429,4 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
     private static javax.swing.JLabel timerValue;
     private javax.swing.JTextField total_harga;
     // End of variables declaration//GEN-END:variables
-
-    // class utility
-//    public static class BillingWarnetUtils {
-//        private void wait(int time) {
-//            try {
-//                Thread.sleep(Long.valueOf(time * 1000));
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-    private static void setTimer(int jam) {
-        String textTimer;
-        jam = (jam * 60 * 60);
-        for (int i = jam; i >= 0; i--) {
-            textTimer = String.valueOf(
-                    (i / 60 / 60) + " JAM "
-                    + (i / 60) + " MENIT "
-                    + (i % 60) + " DETIK"
-            );
-            timerValue.setText(textTimer);
-        }
-    }
 }
