@@ -20,7 +20,6 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
      */
     private BillingWarnetUtils threadTimer;
     private Boolean isPaused = false;
-    private Boolean btnPauseDisable = true;
 
     public AplikasiBillingWarnet() {
         this.setResizable(false);
@@ -273,6 +272,7 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
         try {
             threadTimer.reset();
             btnTimer.setText("Mulai");
+            isPaused = false;
             btnTimer.setEnabled(false);
         } catch (Exception e) {
             int option = JOptionPane.YES_OPTION;
@@ -303,7 +303,7 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
                 timerValue, (int) Integer.valueOf(Character.toString(selectedTime.charAt(0)))
         );
         threadTimer.start();
-        btnPauseDisable = false;
+//        btnPauseDisable = false;
         btnTimer.setEnabled(true);
         btnTimer.setText("Pause");
     }// GEN-LAST:event_jButton1ActionPerformed
