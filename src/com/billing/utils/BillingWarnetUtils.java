@@ -21,8 +21,7 @@ public class BillingWarnetUtils extends Thread {
     public void run() {
         try {
             String textTimer;
-//            jam = (jam * 60 * 60);
-            jam = 3;
+            jam = (jam * 60 * 60);
             for (timer = jam; timer >= 0; timer--) {
                 textTimer = String.valueOf(
                         (timer / 60 / 60) + " JAM "
