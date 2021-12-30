@@ -300,7 +300,10 @@ public class AplikasiBillingWarnet extends javax.swing.JFrame {
         System.out.println(selectedTime.charAt(0));
 
         threadTimer = new BillingWarnetUtils(
-                timerValue, (int) Integer.valueOf(Character.toString(selectedTime.charAt(0))), btnTimer
+                timerValue, 
+                (int) Integer.valueOf(Character.toString(selectedTime.charAt(0))), 
+                btnTimer, 
+                selectedTime
         );
         threadTimer.start();
 //        btnPauseDisable = false;

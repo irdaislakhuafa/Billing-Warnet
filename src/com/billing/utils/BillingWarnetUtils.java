@@ -10,11 +10,17 @@ public class BillingWarnetUtils extends Thread {
     private int jam;
     private int timer;
     private JButton btnStart;
+    private String longTime;
 
     public BillingWarnetUtils(JLabel label, int jam, JButton btnStart) {
         this.label = label;
         this.jam = jam;
         this.btnStart = btnStart;
+    }
+    
+    public BillingWarnetUtils(JLabel label, int jam, JButton btnStart, String longTime) {
+        this(label, jam, btnStart);
+        this.longTime = longTime;
     }
 
     @Override
@@ -32,7 +38,7 @@ public class BillingWarnetUtils extends Thread {
                 wait(1);
             }
 
-            this.addNotifTimerDone(String.valueOf(jam / 60 / 60));
+            this.addNotifTimerDone(longTime);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -40,7 +46,7 @@ public class BillingWarnetUtils extends Thread {
 
     public void reset() {
         this.stop();
-        this.addNotifTimerDone(String.valueOf(jam / 60 / 60));
+        this.addNotifTimerDone(longTime);
         label.setText("00 JAM 00 MENIT 00 DETIK");
     }
 
@@ -55,6 +61,6 @@ public class BillingWarnetUtils extends Thread {
     public void addNotifTimerDone(String value) {
         btnStart.setText("Mulai");
         btnStart.setEnabled(false);
-        JOptionPane.showConfirmDialog(null, "Waktu penyewaan " + value + " sudah habis!", "Info", JOptionPane.OK_OPTION);
+        JOptionPane.showConfirmDialog(null, "Waktu penyewaan " + value.toUpperCase() + " sudah habis!", "Info", JOptionPane.OK_OPTION);
     }
 }
